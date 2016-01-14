@@ -7,6 +7,10 @@ from os.path import join, split, splitext,commonprefix, isdir
 from os import makedirs, listdir
 from glob import glob
 import subprocess
+import logging
+
+# TODO: create logging config
+logging.basicConfig(level=logging.INFO)
 
 def remove_ext(name):
     "drop everything after a dot"
@@ -33,6 +37,8 @@ def transform(base, target_base, pattern, id_filter=None, ext=None):
 
 def process(pairs, cmd='echo {} to {}', execute=False):
     "process files"
+    logger = logging.getLogger(__name__)
+    logger.info('executing command {} on {} pairs'.format(cmd, len(pairs)))
     for source, target in pairs:
         print(cmd.format(source, target))
         if execute:
