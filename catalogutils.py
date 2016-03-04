@@ -3,14 +3,14 @@
 from __future__ import (absolute_import, division,
                         print_function, unicode_literals)
 from builtins import *
-from os.path import join, split, splitext,commonprefix, isdir
+from os.path import join, split, splitext, commonprefix, isdir
 from os import makedirs, listdir
 from glob import glob
 import subprocess
 import logging
 
-# TODO: create logging config
-logging.basicConfig(level=logging.INFO)
+# read initial config file
+#logging.config.fileConfig('logging.conf')
 
 def remove_ext(name):
     "drop everything after a dot"
@@ -19,11 +19,12 @@ def remove_ext(name):
 def transform(base, target_base, pattern, id_filter=None, ext=None):
     "create pairs of source file names and target file names"
     files = glob(join(base, pattern))
-    print(join(base, pattern))
     pairs = []
+    logger = logging.getLogger(__name__)
+    logger.info('source files: {}'.format(join(base, pattern)))
     for fname in files:
         prefix = commonprefix([fname, base])
-        target = join(target_base, fname[len(base):])
+        target = join(target_base, fname[len(prefix):])
         if ext:
             filename = remove_ext(split(target)[1]) + ext
         else:
