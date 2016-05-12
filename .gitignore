@@ -12,4 +12,5 @@ __pycache__
 .pynative/
 catalog1-resized/
 catalog2-resized/
-
+data/
+log/
