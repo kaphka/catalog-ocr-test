@@ -1,9 +1,16 @@
-# catalog-ocr-test
+# nbconv
 
-## Verwendete Software
-Installieren auf dem Mac nur mit richtiger gcc Version
+## Usage
 
-Auf Linux:
-Wenn man Anaconda benutzt sollte man statt "python setup.py install"
-lieber "pip install ./ocropy" benutzten/
+- create conda enviroment:
+
+```bash 
+conda env create -f environment.yml
+```
+
+- install [ocropy](https://github.com/tmbdev/ocropy)
+- run notebook server:
+```bash
+jupyter notebook
+```
 
